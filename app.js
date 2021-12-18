@@ -9,7 +9,7 @@ const msgHtml= require('./services/emailTemplates');
 env.config();
 const { v4: uuidv4 } = require('uuid');
 const File=require('./models/file');
-
+const PORT = process.env.PORT || 1000;
 //db
 connectDB();
 app.use('/files',require('./routes/show'));
@@ -118,6 +118,6 @@ function errHandler(err, req, res, next) {
 }
 
 app.use(errHandler);
-app.listen(1000, () => {
+app.listen(PORT, () => {
     console.log("server up and running");
 })
