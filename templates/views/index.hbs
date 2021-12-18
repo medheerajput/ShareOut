@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShareOut</title>
+    <link rel="stylesheet" href="/css/stylish.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>Share Your File</header>
+        <form action="/api/files" method="POST" enctype="multipart/form-data">
+            <input class="file-input" type="file" name="image" hidden>
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p>Browse File to Upload</p>
+            <button class="send" type="submit" hidden></button>
+        </form>
+        {{# if file}}
+        <section class="progress-area">
+            <div class="copy-text">
+                <input type="text" class="text" value="{{file}}" readonly>
+                <button>
+                    <i onclick="copyText()" class="fa fa-clone"></i>
+                </button>
+            </div>
+            <form action="/api/files/send" method="post" autocomplete="off">
+                <div class="wrap">
+                    <input type="text" value="{{uuid}}" name="uuid" hidden>
+                    <br>
+                    <div class="input-val">
+                        <input class="input" type="email"  placeholder="EmailTo" name="emailTo">
+                        <div class="underline"></div>
+                    </div>
+
+                    <div class="input-val">
+                        <input class="input" type="email" placeholder="EmailFrom" name="emailFrom">
+                        <div class="underline"></div>
+                    </div>
+                    <button type="submit">send</button>
+                </div>
+
+            </form>
+        </section>
+
+        {{else}}
+        <p></p>
+        {{/ if}}
+        <section class="uploaded-area">
+        </section>
+    </div>
+    <script src="/js/script.js"></script>
+</body>
+
+</html>
